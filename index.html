@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+ <title>Mortgage Calculator</title>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+ </head>
+   <body ng-app = "mortgageApp">  
+     <div ng-controller="mortgageCtrl as vm">
+         <div class="Jumbotron"></div>
+            <h1 ng-click="vm.changeCalc()">Mortgage Calculator</h1>
+            <h2>A tool to help you calculate your monthly mortgage payment</h2>
+         <div class="Panels"></div>
+            <h1>Enter Information</h1>
+            <form class="Forms">
+                <p>Principal Amount</p>
+                <input type="text" ng-model = "vm.arrayData.principalAmt" ng-change="vm.changeCalc()">
+                <p>Interest Rate</p>
+                <input type="text" ng-model = "vm.arrayData.interestRate" ng-change="vm.changeCalc()">
+                <p>Loan Term</p>
+                <input type="text" ng-model = "vm.arrayData.loanTerm" ng-change="vm.changeCalc()">
+                <p>Period</p>
+                <select name="period" ng-model = "vm.arrayData.period" ng-change="vm.changeCalc()">
+                    <option value="12">Monthly</option>
+                    <option value="1">Yearly</option>
+                    <option value="52">Weekly</option>
+                </select>
+            </form>
+         <div class="Alerts">
+             <label for= "principalAmt">Principal Amount: </label>
+             <output name="principalAmt">{{vm.arrayData.principalAmt | currency: '$'}}</output>
+             <p></p>
+             <label for= "interestRate">Interest Rate: </label>
+             <output name="interestRate">{{vm.arrayData.interestRate}}%</output>
+             <p></p>
+             <label for= "loanTerm">Loan Term: </label>
+             <output name="loanTerm">{{vm.arrayData.loanTerm}} years</output>
+             <p></p>
+             <label for= "period">Period: </label>
+             <output name="period">Making {{vm.arrayData.period}} payments during the year</output>
+             <hr>
+             <label for= "payment">Payment Amount: </label>
+             <output id = "output" name="payment">{{vm.$monthlyPay | currency: '$'}}</output>
+             <p></p>
+         </div>
+        
+     </div>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+   
+   <script src="app.js" type ="text/javascript"></script>
+   </body>
+ </html> 
